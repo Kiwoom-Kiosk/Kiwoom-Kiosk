@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키움 키오스크</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .title {
+            font-size: 3em;
+            margin-bottom: 0px;
+            margin-right: 70px;
+            margin-top: -300px;
+            font-weight: bold;
+        }
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .upload-container input[type="file"] {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .upload-container button {
+            font-size: 2em;
+            /* padding: 10px 20px; */
+        }
+        .regular-ui {
+            font-size: 2em;
+        }
+        .large-ui {
+            font-size: 2em;
+        }
+        @media (max-width: 430px) {
+            .title {
+                font-size: 1.5em;
+            }
+            .upload-container input[type="file"], .upload-container button {
+                font-size: 1em;
+            }
+            .regular-ui {
+                font-size: 1em;
+            }
+            .large-ui {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="title">키움 키오스크</div>
+    <div class="upload-container">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" name="file" id="fileInput" required>
+            <button type="submit">사진 올리기</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>
+        document.getElementById('uploadForm').onsubmit = async function(event) {
+            event.preventDefault();
+            const formData = new FormData();
+            const fileInput = document.getElementById('fileInput');
+            formData.append('file', fileInput.files[0]);
+
+            const response = await fetch('/upload/', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+            const resultDiv = document.getElementById('result');
+
+            if (response.ok) {
+                const age = result.age;
+                if (age >= 50) {
+                    resultDiv.innerHTML = '<div class="large-ui">Age: ' + age + '</div>';
+                } else {
+                    resultDiv.innerHTML = '<div class="regular-ui">Age: ' + age + '</div>';
+                }
+            } else {
+                resultDiv.innerHTML = '<div class="regular-ui">Error: ' + result.error + '</div>';
+            }
+        };
+    </script>
+</body>
+</html>
