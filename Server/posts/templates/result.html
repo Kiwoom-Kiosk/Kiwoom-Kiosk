@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Estimation Result</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Estimated Age</h1>
+    <img src="{{ uploaded_file_url }}" alt="Uploaded Image">
+    <p>Estimated Age: {{ age }}세</p>
+    <a href="/">Upload Another Image</a>
+</body>
+</html>
