@@ -20,6 +20,12 @@
 
 <br/>
 
+## 시연 영상
+| ![ezgif-2-e7f3c45a0f](https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/2406fa6b-95b9-4c88-98ef-f0c16b0eb1ef) | ![ezgif-2-cf3e18e03f](https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/cd2469ec-268f-4754-a998-82fa2da053f1) |
+|:------:|:------:|
+| **50세 미만 사용자 UI** | **50세 이상 사용자 UI** |
+
+
 ## 프로젝트 개요
 
 ### 1️⃣ 기술개발 배경
