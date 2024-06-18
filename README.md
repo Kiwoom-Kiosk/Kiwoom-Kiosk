@@ -20,7 +20,7 @@
 
 <br/>
 
------
+## 프로젝트 개요
 
 ### 1️⃣ 기술개발 배경
 - 디지털 전환과 온라인 서비스 확산으로 인해 다양한 연령대의 사람들이 키오스크와 같은 디지털 기기를 사용하는 빈도가 증가하고 있음.
@@ -55,7 +55,126 @@
 <br/>
 
 ### 5️⃣ 일정계획 간트차트
-<img width="480" alt="스크린샷 2024-06-19 오전 12 54 37" src="https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/55c27ff0-e27d-4d89-9466-bc701f450ec7">
+<img width="580" alt="스크린샷 2024-06-19 오전 12 54 37" src="https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/55c27ff0-e27d-4d89-9466-bc701f450ec7">
 
+<br><br/>
+
+## CNN 모델 구현
+🔗[Kiwoom-Kiosk 나이 예측 모델 상세보기](https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/blob/feature/2-Age-Prediction/Kiwoon-Kiosk.ipynb)
+<br><br/>
+
+### 📌 숫자로 표현된 인종, 성별 데이터를 문자열로 변환 / 데이터셋 폴더에서 파일명을 분석하여 나이, 성별, 인종 정보 추출
+````python
+dataset_dict = {
+    'race_id': {
+        0: 'white',
+        1: 'black',
+        2: 'asian',
+        3: 'indian',
+        4: 'others'
+    },
+    'gender_id': {
+        0: 'male',
+        1: 'female'
+    }
+}
+
+def parse_dataset(dataset_path, ext='jpg'):
+    def parse_info_from_file(path):
+        try:
+            filename = os.path.split(path)[1]
+            filename = os.path.splitext(filename)[0]
+            age, gender, race, _ = filename.split('_')
+            return int(age), dataset_dict['gender_id'][int(gender)], dataset_dict['race_id'][int(race)]
+        except Exception as ex:
+            return None, None, None
+
+    files = glob(os.path.join(dataset_path, "*.%s" % ext))
+
+    records = []
+    for file in files:
+        info = parse_info_from_file(file)
+        records.append(info)
+
+    df = pd.DataFrame(records)
+    df['file'] = files
+    df.columns = ['age', 'gender', 'race', 'file']
+    df = df.dropna()
+
+    return df
+
+df = parse_dataset('UTKFace')
+
+df.head()
+````
+<img width="600" alt="스크린샷 2024-06-19 오전 1 11 34" src="https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/c1807641-4dd1-496f-929c-fa4682e084d3">
+
+<br><br/>
+
+
+### 📌 이미지 전처리, 모델 구성 및 학습
+````python
+def load_and_preprocess_image(filepath, target_size=(200, 200)):
+    img = cv2.imread(filepath)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = cv2.resize(img, target_size)
+    return img
+
+files = df['file'].tolist()
+ages = df['age'].tolist()
+
+images = [load_and_preprocess_image(file) for file in files]
+age = np.array(ages, dtype=np.int64)
+images = np.array(images)
+
+x_train_age, x_test_age, y_train_age, y_test_age = train_test_split(images, age, random_state=42, test_size=0.2)
+
+model = Sequential([
+    Flatten(input_shape=(200, 200, 3)),
+    Dense(512, activation='relu'),
+    Dropout(0.5),
+    Dense(1, activation='linear')
+])
+
+model.compile(loss='mse', optimizer=Adam(), metrics=['mae'])
+
+history = model.fit(
+    datagen.flow(x_train_age, y_train_age, batch_size=batch_size),
+    validation_data=(x_valid_age, y_valid_age),
+    epochs=epochs,
+    callbacks=callbacks
+)
+
+# 학습 결과 시각화
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 2, 1)
+plt.plot(history.history['loss'], label='Training Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.legend()
+plt.title('Loss')
+
+plt.subplot(1, 2, 2)
+plt.plot(history.history['mae'], label='Training MAE')
+plt.plot(history.history['val_mae'], label='Validation MAE')
+plt.legend()
+plt.title('Mean Absolute Error')
+
+plt.show()
+````
+<img width="624" alt="스크린샷 2024-06-19 오전 1 08 51" src="https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/dad7d270-2764-4058-81bc-089cc5f54464">
+
+
+<br><br/>
+
+### 📌 테스트 데이터로 모델 평가
+````python
+loss, mae = model.evaluate(x_test_age, y_test_age, verbose=0)
+print(f'Test MAE: {mae}')
+
+new_image = load_and_preprocess_image('test_image.jpg')
+predicted_age = model.predict(np.expand_dims(new_image, axis=0))
+print(f'Predicted Age: {predicted_age[0][0]}')
+````
+<img width="600" alt="스크린샷 2024-06-19 오전 1 09 14" src="https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/dee5fbd3-f309-403c-a912-57fad8b3dea7">
 
 
