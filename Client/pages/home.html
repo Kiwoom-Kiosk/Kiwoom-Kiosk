@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Kiwoom Cafe</title>
+    <script src="https://use.fontawesome.com/releases/v6.5.2/js/all.js"></script>
+  </head>
+  <body>
+    <script>
+      var urlParams = new URLSearchParams(window.location.search);
+      var isEldery = urlParams.get("isEldery") === "true"; // URL 매개변수 값
+
+      var cssLink = document.createElement("link");
+      cssLink.rel = "stylesheet";
+      if (isEldery) {
+        cssLink.href = "/styles/home_eldery.css"; // 키움 서비스 필요할 사용
+      } else {
+        cssLink.href = "/styles/home_youth.css"; // 그렇지 않을 경우
+      }
+      document.head.appendChild(cssLink);
+    </script>
+    <header class="site_header">
+      <img
+        src="/assets/img/cafe.png"
+        class="siteHeader_img"
+        alt="페이지 로고"
+      />
+      <h1>Kiwoom-Kiosk</h1>
+      <img
+        src="/assets/img/navBar.png"
+        class="siteHeader_img"
+        id="open_modal"
+        alt="햄버거바"
+      />
+    </header>
+    <nav class="menu_nav">
+      <ul class="menu_nav_ul">
+        <li class="menu_nav_li"><a href="#all">all</a></li>
+        <li class="menu_nav_li"><a href="#coffee">coffee</a></li>
+        <li class="menu_nav_li"><a href="#beverage">beverage</a></li>
+        <li class="menu_nav_li"><a href="#dessert">dessert</a></li>
+      </ul>
+    </nav>
+    <main>
+      <section>
+        <img class="menu_default_img" src="/assets/img/kiwoom.jpg" alt="kium" />
+      </section>
+      <section class="menu_section">
+        <div class="product_section"></div>
+      </section>
+    </main>
+    <footer>
+      <li>♡디지털 약자를 위한 AI 화면 키움 키오스크♡</li>
+    </footer>
+  </body>
+  <script src="/feature/filter.js" type="module"></script>
+  <script src="/feature/cart.js" type="module"></script>
+</html>

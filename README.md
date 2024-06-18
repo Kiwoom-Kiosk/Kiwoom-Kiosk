@@ -1,7 +1,7 @@
 # Kiwoom-Kiosk
 🌱 [키움 키오스크] 디지털 약자를 위한 AI 화면 키움 키오스크
 
-</br>
+<br/>
 
 ## OpenSource Programming Team Project 
 
@@ -9,7 +9,6 @@
 |:-------------:|:---------:|:--------:|:--------:|
 |"키움 키오스크"<br>디지털 약자를 위한<br>AI 화면 키움 키오스크 |딥러닝_연령층 이미지 인식<br>프론트_키오스크 화면 제작<br>백_키오스크 기능 구현|2024.05.20 ~ 2024.06.19|<img src="https://img.shields.io/badge/Google Colab-F9AB00?style=for-the-badge&logo=Google Colab&logoColor=white"><br><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"><br><img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white"><br><img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">  |
 
-</br>
 
 ## 👥 팀원 소개
 
@@ -316,11 +315,12 @@ MODEL_PATH = os.path.join(BASE_DIR, 'age_model_vgg16.h5')
 
 <br/>
 
+
 ### 📌 화면 구현 기능
 
 #### 1️⃣ 파일 업로드 및 api 통신
 
-```html
+```
       document.getElementById("uploadForm").onsubmit = async function (event) {
         event.preventDefault();
         const formData = new FormData();
@@ -342,9 +342,10 @@ MODEL_PATH = os.path.join(BASE_DIR, 'age_model_vgg16.h5')
 
 <br/>
 
+
 #### 2️⃣ 연령 예측에 따른 청년/고령 분류 결과를 setElderyStatus로 전달
 
-```html
+```
       function goToNextPage() {
         const fileInput = document.getElementById("fileInput");
         const result = document.getElementById("result");
@@ -361,9 +362,10 @@ MODEL_PATH = os.path.join(BASE_DIR, 'age_model_vgg16.h5')
 
 <br/>
 
-#### 3️⃣ 페이지 내 예측된 연령 출력
 
-```html
+### 3️⃣ 페이지 내 예측된 연령 출력
+
+```
       function displayAge() {
         const fileInput = document.getElementById("fileInput");
         const result = document.getElementById("result");
@@ -387,9 +389,11 @@ MODEL_PATH = os.path.join(BASE_DIR, 'age_model_vgg16.h5')
 
 <br/>
 
+
 #### 4️⃣ 연령 예측에 따른 청년/고령 분류 결과를 isEldery변수의 boolean 값으로 입력 받아 분류에 따른 키오스크 페이지 이동
 
-```html
+
+```
       function setElderyStatus(isEldery) {
         var nextPageUrl = "/pages/home.html";
         nextPageUrl += "?isEldery=" + encodeURIComponent(isEldery);
@@ -406,5 +410,4 @@ MODEL_PATH = os.path.join(BASE_DIR, 'age_model_vgg16.h5')
 | <img width="310" src="https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/52da1c18-e728-4b24-8453-d263f194e8b4"> | <img width="320" src="https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/b76b2924-b195-47dd-bbfb-87cea075c252"> |
 |:------:|:------:|
 | **50세 미만 사용자 키오스크 메뉴** | **50세 이상 사용자 키오스크 메뉴** |
-
 
