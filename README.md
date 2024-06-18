@@ -52,8 +52,10 @@
 ### 4️⃣ 서비스 아키텍처 계획
 ![KakaoTalk_Photo_2024-06-19-00-51-30](https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/d9f2d5c2-0f18-4be0-a267-d2acfa578b5c)
 
+<br/>
 
-
+### 5️⃣ 일정계획 간트차트
+<img width="480" alt="스크린샷 2024-06-19 오전 12 54 37" src="https://github.com/Kiwoom-Kiosk/Kiwoom-Kiosk/assets/114728629/55c27ff0-e27d-4d89-9466-bc701f450ec7">
 
 
 
