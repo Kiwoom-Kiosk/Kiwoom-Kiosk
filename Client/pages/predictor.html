@@ -67,29 +67,14 @@
         const fileInput = document.getElementById("fileInput");
         formData.append("file", fileInput.files[0]);
 
-        // Display the uploaded image
         const uploadedImage = document.getElementById("uploadedImage");
         uploadedImage.src = URL.createObjectURL(fileInput.files[0]);
         uploadedImage.style.display = "block";
 
         const result = await uploadFile(formData);
-        const resultDiv = document.getElementById("result");
-
         if (result.age !== undefined) {
-          const age = 80; // const age = result.age;
-          if (age >= 50) {
-            resultDiv.innerHTML =
-              '<div class="large-ui">나이: ' + age + "</div>";
-            setElderyStatus(true);
-          } else {
-            resultDiv.innerHTML =
-              '<div class="regular-ui">나이: ' + age + "</div>";
-            setElderyStatus(false);
-          }
-        } else {
-          resultDiv.innerHTML =
-            '<div class="regular-ui">오류: ' + result.error + "</div>";
-        }
+          const age = result.age;
+        } 
       };
 
       function setElderyStatus(isEldery) {
@@ -101,28 +86,22 @@
 
       function displayAge() {
         const fileInput = document.getElementById("fileInput");
-
-        // 이미 파일을 업로드했으므로 다음 페이지로 이동합니다.
         const result = document.getElementById("result");
-        const age = 30; // const age = result.age;
+        const age = result.age;
         if (age >= 50) {
-          result.innerHTML = '<div class="large-ui">나이: ' + age + "</div>";
+          result.innerHTML = '<div class="large-ui">예측 연령: ' + age + "</div>";
         } else {
-          result.innerHTML = '<div class="regular-ui">나이: ' + age + "</div>";
+          result.innerHTML = '<div class="regular-ui">예측 연령: ' + age + "</div>";
         }
       }
 
       function goToNextPage() {
         const fileInput = document.getElementById("fileInput");
-
-        // 이미 파일을 업로드했으므로 다음 페이지로 이동합니다.
         const result = document.getElementById("result");
-        const age = 30; // const age = result.age;
+        const age = result.age;
         if (age >= 50) {
-          result.innerHTML = '<div class="large-ui">나이: ' + age + "</div>";
-          setElderyStatus(true);
+         setElderyStatus(true);
         } else {
-          result.innerHTML = '<div class="regular-ui">나이: ' + age + "</div>";
           setElderyStatus(false);
         }
       }

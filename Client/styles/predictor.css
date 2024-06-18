@@ -26,7 +26,6 @@ body {
 .upload_section {
   display: flex;
 }
-
 .upload-container input[type="file"] {
   font-size: 2em;
 }
@@ -39,7 +38,7 @@ body {
 .large-ui {
   font-size: 2em;
 }
-@media (max-width: 430px) {
+@media (max-width: 393px) {
   .title {
     font-size: 1.5em;
   }
@@ -48,28 +47,29 @@ body {
     font-size: 1em;
   }
   .regular-ui {
-    padding-top: 2em;
-    padding-left: 2em;
+    padding-top: 2.5em;
+    padding-left: 1.5em;
     font-size: 1.5em;
   }
   .large-ui {
-    padding-top: 2em;
-    padding-left: 2em;
+    padding-top: 2.5em;
+    padding-left: 1.5em;
     font-size: 1.5em;
   }
 }
 
 .title {
   width: 100%;
-  height: 70px;
+  height: 2.2em;
 
   text-align: center;
-  line-height: 70px;
+  line-height: 2.2em;
 
   padding-left: 1rem;
+  padding-right: 1rem;
+
   font-size: 2em;
   font-weight: bold;
-  padding-right: 1rem;
 
   background-color: rgb(0, 73, 29);
   color: rgb(255, 248, 236);
@@ -79,71 +79,91 @@ body {
   display: flex;
   position: fixed;
   bottom: 6em;
-  margin-left: 12.5em;
-  font-size: 1em;
+
   width: 10em;
+
+  margin-left: 12.5em;
+
+  font-size: 1em;
   line-height: 2.4em;
   justify-content: center;
 }
 
 .menu_default_txt {
   padding-top: 1em;
+
   font-size: 1.4em;
   text-align: center;
 }
 
 .menu_default_img {
-  padding-top: 1em;
   width: 100%;
   height: 13rem;
+
+  padding-top: 1em;
 }
 
 .infoSection {
+  margin: 1rem 2rem 1rem 2rem;
+  padding-bottom: 1rem;
+
   border: 1px solid rgb(0, 73, 29);
   border-radius: 5px;
-  margin: 2rem;
-  padding-bottom: 1rem;
 }
 
 .infoSection ol {
   padding: 1rem 0 0 1rem;
+  padding-bottom: 0.5em;
+
   font-size: 1.3em;
   font-weight: bold;
-
-  padding-bottom: 0.5em;
 }
 
 .infoSection li {
+  padding: 0.5em;
+
   list-style: none;
   font-size: 1.1em;
-  padding: 0.5em;
 }
 
 .selectfile_p {
-  background-color: rgb(238, 235, 231);
-  border: 0.1cqh solid black;
-  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
-  text-align: center;
-  border-radius: 3px;
   display: inline;
+
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+
+  text-align: center;
+
+  border: 0.1cqh solid black;
+  border-radius: 3px;
+
+  background-color: rgb(238, 235, 231);
 }
 
 .nextPage_p {
+  display: inline;
+
   background-color: rgb(0, 73, 29);
   color: rgb(255, 248, 236);
+
   padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+
   text-align: center;
   border-radius: 3px;
-  display: inline;
-}
-
-#uploadedImage {
-  width: 8em;
-  height: 8em;
 }
 
 #fileInput {
-  width: 240px;
+  width: 15em;
+}
+
+#upload_img {
+  width: 5em;
+  height: 1.8em;
+}
+
+#uploadedImage {
+  padding-top: 0.5em;
+  width: 10em;
+  height: 10em;
 }
 
 .display_section {
