@@ -15,21 +15,21 @@
 ```
 |-- 📁 CLIENT
 |	 |
-|        |-- 📁 asset 
+|      |-- 📁 asset 
 |	 |		|
 |	 |		|-- 📁 icon
 |	 |		|-- 📁 img
 |	 |
-|        |-- 📁 feature 
+|      |-- 📁 feature 
 |	 |		|-- cart.js // 장바구니 추가 기능 
 |	 |		|-- filter.js // home.html -> 메뉴 카테고리 선택에 따른 필터 기능 
 |	 |		|-- shoppingList.js //  상수 데이터 리스트 
 |	 |		
-|	 | 📁 pages
+|	 | --📁 pages
 |	 |		| - predictor.html // 연령 예측 page
 |	 |		| - home.html // home page
 |	 |		
-|	 | 📁 Styles
+|	 | --📁 Styles
 |	 |		| - predictor.css// 연령 예측기 page css
 |	 |		| - home_Eldery.css// 키오스크 디지털 약자  뷰 css
 |	 |		| - home._Youth.css // 키오스크 일반 뷰 css
