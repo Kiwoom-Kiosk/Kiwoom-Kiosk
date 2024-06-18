@@ -84,6 +84,8 @@ def parse_dataset(dataset_path, ext='jpg'):
     return df
 
 df = parse_dataset('UTKFace')
+
+df.head()
 ```
 
 #### ❗️How:
@@ -135,7 +137,13 @@ model = Sequential([
 model.compile(loss='mse', optimizer=Adam(), metrics=['mae'])
 
 # 모델 학습
-history = model.fit(x_train_age, y_train_age, validation_data=(x_test_age, y_test_age), epochs=10, batch_size=32)
+history = model.fit(
+    datagen.flow(x_train_age, y_train_age, batch_size=batch_size),
+    validation_data=(x_valid_age, y_valid_age),
+    epochs=epochs,
+    callbacks=callbacks
+)
+   
 ```
 
 #### ❗️How:
