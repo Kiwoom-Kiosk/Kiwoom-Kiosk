@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/predictor.css" />
+    <title>키움 키오스크</title>
+  </head>
+  <body>
+    <div class="title">Kiwoom Kiosk</div>
+    <section>
+      <img class="menu_default_img" src="/assets/img/kiwoom.jpg" alt="kium" />
+      <h1 class="menu_default_txt">키움 카페에 오신 걸 환영합니다!</h1>
+      <div class="infoSection">
+        <ol>
+          이용방법
+        </ol>
+        <li>
+          1. 이용방법 하단의
+          <p class="selectfile_p">파일 선택</p>
+          을 눌러 <br />
+          &nbsp; &nbsp; &nbsp;이미지를 업로드해 주세요
+        </li>
+        <li>
+          2. 우측 하단의
+          <p class="nextPage_p">다음 페이지로 이동</p>
+          을 <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;누르시면 주문 페이지로 이동합니다.
+        </li>
+      </div>
+    </section>
+    <div class="upload-container">
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput" required />
+        <button type="submit">사진 올리기</button>
+      </form>
+      <div id="result"></div>
+    </div>
+    <button type="type" class="nextPage" onclick="goToNextPage()">
+      다음 페이지로 이동
+    </button>
+    <script>
+      async function uploadFile(formData) {
+        const response = await fetch("/upload/", {
+          method: "POST",
+          body: formData,
+        });
+
+        return await response.json();
+      }
+
+      document.getElementById("uploadForm").onsubmit = async function (event) {
+        event.preventDefault();
+        const formData = new FormData();
+        const fileInput = document.getElementById("fileInput");
+        formData.append("file", fileInput.files[0]);
+
+        const result = await uploadFile(formData);
+        const resultDiv = document.getElementById("result");
+
+        if (result.age !== undefined) {
+          const age = 80;
+          //const age = result.age;
+          if (age >= 50) {
+            resultDiv.innerHTML =
+              '<div class="large-ui">나이: ' + age + "</div>";
+            setElderyStatus(true);
+          } else {
+            resultDiv.innerHTML =
+              '<div class="regular-ui">나이: ' + age + "</div>";
+            setElderyStatus(false);
+          }
+        } else {
+          resultDiv.innerHTML =
+            '<div class="regular-ui">오류: ' + result.error + "</div>";
+        }
+      };
+
+      function setElderyStatus(isEldery) {
+        var nextPageUrl = "/pages/home.html";
+        nextPageUrl += "?isEldery=" + encodeURIComponent(isEldery);
+
+        window.location.href = nextPageUrl;
+      }
+
+      function goToNextPage() {
+        const fileInput = document.getElementById("fileInput");
+
+        // 이미 파일을 업로드했으므로 다음 페이지로 이동합니다.
+        const result = document.getElementById("result");
+        const age = 80;
+        //const age = result.age;
+        if (age >= 50) {
+          result.innerHTML = '<div class="large-ui">나이: ' + age + "</div>";
+          setElderyStatus(true);
+        } else {
+          result.innerHTML = '<div class="regular-ui">나이: ' + age + "</div>";
+          setElderyStatus(false);
+        }
+      }
+    </script>
+  </body>
+</html>

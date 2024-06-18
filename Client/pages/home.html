@@ -3,25 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to Kiwoom Kiosk</title>
-    <link rel="stylesheet" href="/styles/home.css"/>
-
+    <title>Welcome to Kiwoom Cafe</title>
     <script src="https://use.fontawesome.com/releases/v6.5.2/js/all.js"></script>
   </head>
   <body>
     <script>
-        var urlParams = new URLSearchParams(window.location.search);
-        var isEldery = urlParams.get('isEldery') === 'true'; // URL 매개변수 값
-    
-        var cssLink = document.createElement("link");
-        cssLink.rel = "stylesheet";
-        if (isEldery) {
-          cssLink.href = "/styles/home_eldery.css"; // 키움 서비스 필요할 사용
-        } else {
-          cssLink.href = "/styles/home_youth.css"; // 그렇지 않을 경우
-        }
-        document.head.appendChild(cssLink);
-      </script>
+      var urlParams = new URLSearchParams(window.location.search);
+      var isEldery = urlParams.get("isEldery") === "true"; // URL 매개변수 값
+
+      var cssLink = document.createElement("link");
+      cssLink.rel = "stylesheet";
+      if (isEldery) {
+        cssLink.href = "/styles/home_eldery.css"; // 키움 서비스 필요할 사용
+      } else {
+        cssLink.href = "/styles/home_youth.css"; // 그렇지 않을 경우
+      }
+      document.head.appendChild(cssLink);
+    </script>
     <header class="site_header">
       <img
         src="/assets/img/cafe.png"
@@ -44,16 +42,6 @@
         <li class="menu_nav_li"><a href="#dessert">dessert</a></li>
       </ul>
     </nav>
-        <aside class="modal hidden">
-        <div id="close_modal">        
-            <i class="fa-solid fa-arrow-right"></i>
-        </div>
-        <ul>
-            <li>관심상품 보기</li>
-            <li class="goCart">장바구니</a></li>
-            <li>관리자</li>
-        </ul>
-    </aside>
     <main>
       <section>
         <img class="menu_default_img" src="/assets/img/kiwoom.jpg" alt="kium" />
@@ -67,6 +55,5 @@
     </footer>
   </body>
   <script src="/feature/filter.js" type="module"></script>
-  <script src="/feature/modal.js"></script>
   <script src="/feature/cart.js" type="module"></script>
 </html>
