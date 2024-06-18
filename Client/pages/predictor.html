@@ -31,11 +31,23 @@
     </section>
     <div class="upload-container">
       <form id="uploadForm" enctype="multipart/form-data">
+        <div class="upload_section">
         <input type="file" name="file" id="fileInput" required />
-        <button type="submit">사진 올리기</button>
-      </form>
-      <div id="result"></div>
+        <button type="submit" id="upload_img" onclick="displayAge()">업로드</button> 
+      </div>
+      <div class="display_section">
+        <div id="uploadedImageContainer">
+          <img
+            id="uploadedImage"
+            src=""
+            alt="Uploaded Image"
+            style="display: none; max-width: 100%"
+          />
+        </div>
+        <div id="result"></div>
+      </div>
     </div>
+      </form>
     <button type="type" class="nextPage" onclick="goToNextPage()">
       다음 페이지로 이동
     </button>
@@ -55,12 +67,16 @@
         const fileInput = document.getElementById("fileInput");
         formData.append("file", fileInput.files[0]);
 
+        // Display the uploaded image
+        const uploadedImage = document.getElementById("uploadedImage");
+        uploadedImage.src = URL.createObjectURL(fileInput.files[0]);
+        uploadedImage.style.display = "block";
+
         const result = await uploadFile(formData);
         const resultDiv = document.getElementById("result");
 
         if (result.age !== undefined) {
-          const age = 80;
-          //const age = result.age;
+          const age = 80; // const age = result.age;
           if (age >= 50) {
             resultDiv.innerHTML =
               '<div class="large-ui">나이: ' + age + "</div>";
@@ -83,13 +99,25 @@
         window.location.href = nextPageUrl;
       }
 
+      function displayAge() {
+        const fileInput = document.getElementById("fileInput");
+
+        // 이미 파일을 업로드했으므로 다음 페이지로 이동합니다.
+        const result = document.getElementById("result");
+        const age = 30; // const age = result.age;
+        if (age >= 50) {
+          result.innerHTML = '<div class="large-ui">나이: ' + age + "</div>";
+        } else {
+          result.innerHTML = '<div class="regular-ui">나이: ' + age + "</div>";
+        }
+      }
+
       function goToNextPage() {
         const fileInput = document.getElementById("fileInput");
 
         // 이미 파일을 업로드했으므로 다음 페이지로 이동합니다.
         const result = document.getElementById("result");
-        const age = 80;
-        //const age = result.age;
+        const age = 30; // const age = result.age;
         if (age >= 50) {
           result.innerHTML = '<div class="large-ui">나이: ' + age + "</div>";
           setElderyStatus(true);

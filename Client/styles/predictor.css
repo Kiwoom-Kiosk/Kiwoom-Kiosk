@@ -18,14 +18,17 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 400px;
-  padding: 20px;
   box-sizing: border-box;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.upload_section {
+  display: flex;
 }
 
 .upload-container input[type="file"] {
   font-size: 2em;
-  margin-bottom: 20px;
 }
 .upload-container button {
   font-size: 2em;
@@ -45,10 +48,14 @@ body {
     font-size: 1em;
   }
   .regular-ui {
-    font-size: 1em;
+    padding-top: 2em;
+    padding-left: 2em;
+    font-size: 1.5em;
   }
   .large-ui {
-    font-size: 3em;
+    padding-top: 2em;
+    padding-left: 2em;
+    font-size: 1.5em;
   }
 }
 
@@ -69,9 +76,14 @@ body {
 }
 
 .nextPage {
-  margin-left: 14em;
+  display: flex;
+  position: fixed;
+  bottom: 6em;
+  margin-left: 12.5em;
   font-size: 1em;
   width: 10em;
+  line-height: 2.4em;
+  justify-content: center;
 }
 
 .menu_default_txt {
@@ -100,6 +112,7 @@ body {
 
   padding-bottom: 0.5em;
 }
+
 .infoSection li {
   list-style: none;
   font-size: 1.1em;
@@ -124,22 +137,23 @@ body {
   display: inline;
 }
 
+#uploadedImage {
+  width: 8em;
+  height: 8em;
+}
+
+#fileInput {
+  width: 240px;
+}
+
+.display_section {
+  display: flex;
+}
+
 button {
   background-color: rgb(0, 73, 29);
   color: rgb(255, 248, 236);
   height: 2.5em;
   border-radius: 6px;
   cursor: pointer;
-}
-
-footer {
-  position: fixed;
-  display: flex;
-  padding: 2rem;
-  background-color: rgb(0, 73, 29);
-  color: rgb(255, 248, 236);
-  justify-content: center;
-  align-items: center;
-  clear: both;
-  list-style: none;
 }
