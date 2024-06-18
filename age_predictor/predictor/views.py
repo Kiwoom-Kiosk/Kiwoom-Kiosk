@@ -46,7 +46,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model
+from tensorflow.python.keras.models import load_model
 
 # Load the model and the cascade classifier
 age_model = load_model('age_model_3.h5')
